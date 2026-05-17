@@ -1,0 +1,297 @@
+/* 전체 기본 설정 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Jua', sans-serif;
+  /* 🌈 전체 배경: 부드러운 파스텔 하늘색 */
+  background: #e8f4f8;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 390px; /* 모바일 폭 고정 */
+  margin: 0 auto;
+  padding: 15px;
+}
+
+/* 제목 부분 */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.header h2 {
+  font-size: 18px;
+  margin: 0;
+  /* 🌈 제목: 짙은 보라색으로 포인트를 주어 가독성 확보 */
+  color: #5c527f;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* 화살표 버튼 */
+.nav-btn {
+  width: 35px !important;
+  height: 35px !important;
+  padding: 0 !important;
+  /* 🌈 버튼: 선명한 네온 블루 계열 */
+  background: #4facfe;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(79, 172, 254, 0.3);
+  flex-shrink: 0;
+}
+
+.nav-btn:active {
+  transform: scale(0.9);
+}
+
+/* 달력 그리드 */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.day {
+  /* 🌈 달력 칸: 기본은 하얗고 깔끔하게 */
+  background: white;
+  border-radius: 10px;
+  padding: 4px;
+  min-height: 65px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: 0.2s;
+}
+
+/* 빈 칸은 투명하게 */
+.day.empty {
+  background: transparent !important;
+  box-shadow: none !important;
+  pointer-events: none;
+}
+
+/* 요일별 색상 */
+.date {
+  font-size: 11px;
+  font-weight: bold;
+  color: #4e4e4e;
+}
+
+.day:nth-child(7n+1) .date { color: #ff4757; } /* 일요일: 산뜻한 레드 */
+.day:nth-child(7n) .date { color: #1e90ff; }   /* 토요일: 시원한 파란색 */
+
+/* 금액 표시 */
+.income { 
+  /* 🌈 당일 수입: 톡 쏘는 오렌지 컬러 */
+  color: #ff6b81; 
+  font-size: 9px; 
+}
+.expense { 
+  color: #ff4757; 
+  font-size: 9px; 
+}
+
+/* 하단 요약 */
+.summary {
+  margin-top: 20px;
+  /* 🌈 총 수익창: 은은한 바나나 레몬색 */
+  background: #fff9db;
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(255, 212, 59, 0.2);
+  color: #2f3542;
+  border: 1px solid #ffe066;
+}
+
+/* 모달 입력창 */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(47, 53, 66, 0.4);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  width: 85%;
+  max-width: 400px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 모달 안의 입력창 및 버튼들 */
+.modal-content button, 
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #f1f2f6;
+  font-family: 'Jua', sans-serif;
+}
+
+.modal-content button {
+  background: #57606f;
+  color: white;
+  border: none;
+}
+
+/* 모달 내 입력창 정렬 */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #f1f2f6;
+}
+
+.input-group select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-family: 'Jua', sans-serif;
+}
+
+/* 추가된 내역 리스트 */
+.item-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 5px;
+  border-bottom: 1px solid #f1f2f6;
+  font-size: 14px;
+}
+
+/* 삭제 버튼 */
+.del-btn {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: none;
+  border-radius: 50%;
+  background: #ff6b81;
+  color: white;
+  font-size: 11px;
+  padding: 0;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+/* 추가 버튼 */
+.save-btn {
+  /* 🌈 추가 버튼: 러블리한 코랄 핑크 */
+  background: #ff85a2 !important;
+  font-weight: bold;
+}
+
+.close-btn {
+  background: #a4b0be !important;
+}
+
+/* 오늘 날짜 강조 스타일 */
+.day.today {
+  /* 🌈 오늘 날짜: 산뜻한 민트초코빛 테두리와 연민트 배경 */
+  border: 2px solid #2ed573; 
+  background: #eefbf2;       
+}
+
+/* 오늘 날짜의 숫자 */
+.day.today .date {
+  color: #2ed573 !important;
+  font-weight: 900;
+}
+
+/* 백업 버튼 */
+.backup-btn {
+  /* 🌈 백업 버튼: 노란창에 어울리는 주황빛 포인트 */
+  background: #ffe8cc !important;
+  color: #f76707 !important;
+  border: 1px solid #ffd8a8 !important;
+  padding: 5px 10px !important;
+  font-size: 12px !important;
+  width: auto !important;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.backup-btn:active {
+  background: #ffd8a8 !important;
+  color: white !important;
+}
+
+/* 하단 카드 배정 정보 */
+.delivery-summary {
+  display: flex;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.delivery-card {
+  flex: 1;
+  padding: 18px;
+  border-radius: 20px;
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* 🌈 배민 카드: 오리지널 민트색보다 청량한 스카이 민트 그라데이션 */
+.baemin-card {
+  background: linear-gradient(135deg, #2ecc71, #00d2d3);
+}
+
+/* 🌈 쿠팡 카드: 상큼 발랄한 오렌지 자몽 그라데이션 */
+.coupang-card {
+  background: linear-gradient(135deg, #ff9f43, #ff5252);
+}
+
+.delivery-title {
+  font-size: 15px;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.delivery-money {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.settlement {
+  font-size: 11px;
+  font-weight: bold;
+  color: #6c5ce7;
+  margin-top: 2px;
+}
