@@ -8,17 +8,138 @@ function App() {
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const [data, setData] = useState(() => {
-    const saved = localStorage.getItem("gagebu-data");
-    return saved ? JSON.parse(saved) : {};
-  });
+const [data, setData] = useState(() => {
+  const saved = localStorage.getItem("gagebu-data");
 
+  if (saved) return JSON.parse(saved);
+
+  return {
+    "2026-4-17": [
+      { amount: 8000, platform: "배민" },
+      { amount: 4700, platform: "쿠팡" },
+    ],
+
+    "2026-4-18": [
+      { amount: 100000, platform: "쿠팡" },
+      { amount: 110000, platform: "배민" },
+    ],
+
+    "2026-4-19": [
+      { amount: 70000, platform: "쿠팡" },
+      { amount: 160000, platform: "배민" },
+    ],
+
+    "2026-4-21": [
+      { amount: 70000, platform: "배민" },
+      { amount: 22000, platform: "쿠팡" },
+    ],
+
+    "2026-4-22": [
+      { amount: 25000, platform: "쿠팡" },
+      { amount: 55000, platform: "배민" },
+    ],
+
+    "2026-4-25": [
+      { amount: 120000, platform: "배민" },
+    ],
+
+    "2026-4-28": [
+      { amount: 45000, platform: "배민" },
+    ],
+
+    "2026-4-29": [
+      { amount: 123950, platform: "배민" },
+    ],
+
+    "2026-5-1": [
+      { amount: 30000, platform: "배민" },
+    ],
+
+    "2026-5-2": [
+      { amount: 135000, platform: "배민" },
+    ],
+
+    "2026-5-3": [
+      { amount: 45000, platform: "쿠팡" },
+      { amount: 210000, platform: "배민" },
+    ],
+
+    "2026-5-4": [
+      { amount: 90000, platform: "배민" },
+    ],
+
+    "2026-5-5": [
+      { amount: 100000, platform: "배민" },
+    ],
+
+    "2026-5-6": [
+      { amount: 14000, platform: "쿠팡" },
+      { amount: 52000, platform: "배민" },
+    ],
+
+    "2026-5-7": [
+      { amount: 150000, platform: "배민" },
+      { amount: 12000, platform: "쿠팡" },
+    ],
+
+    "2026-5-8": [
+      { amount: 84000, platform: "배민" },
+      { amount: 114000, platform: "쿠팡" },
+    ],
+
+    "2026-5-9": [
+      { amount: 140000, platform: "배민" },
+      { amount: 6000, platform: "쿠팡" },
+    ],
+
+    "2026-5-10": [
+      { amount: 190000, platform: "배민" },
+      { amount: 38000, platform: "쿠팡" },
+    ],
+
+    "2026-5-11": [
+      { amount: 117000, platform: "쿠팡" },
+      { amount: 25000, platform: "배민" },
+    ],
+
+    "2026-5-12": [
+      { amount: 110000, platform: "쿠팡" },
+    ],
+
+    "2026-5-13": [
+      { amount: 88000, platform: "쿠팡" },
+      { amount: 55000, platform: "배민" },
+    ],
+
+    "2026-5-14": [
+      { amount: 80000, platform: "쿠팡" },
+      { amount: 5000, platform: "배민" },
+    ],
+
+    "2026-5-15": [
+      { amount: 108000, platform: "배민" },
+      { amount: 57000, platform: "쿠팡" },
+    ],
+
+    "2026-5-16": [
+      { amount: 68000, platform: "배민" },
+      { amount: 180000, platform: "쿠팡" },
+    ],
+
+    "2026-5-17": [
+      { amount: 60000, platform: "배민" },
+      { amount: 7400, platform: "쿠팡" },
+    ],
+  };
+});
   const [amount, setAmount] = useState("");
   const [platform, setPlatform] = useState("쿠팡");
 
   useEffect(() => {
     localStorage.setItem("gagebu-data", JSON.stringify(data));
   }, [data]);
+
+  
 
   const exportToCSV = () => {
     let csvContent = "\uFEFF";
