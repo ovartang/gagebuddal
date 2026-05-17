@@ -374,7 +374,7 @@ const [data, setData] = useState(() => {
                   className="income" 
                   style={{ ...settlementTextContainerStyle, color: "#e67e22", fontWeight: "bold" }}
                 >
-                  쿠 +{(coupangAmount / 10000).toFixed(1)}만
+                  쿠 +{(coupangAmount / 10000).toFixed(1)}
                 </div>
               )}
 
@@ -383,7 +383,7 @@ const [data, setData] = useState(() => {
                   className="income" 
                   style={{ ...settlementTextContainerStyle, color: "#2ecc71", fontWeight: "bold" }}
                 >
-                  배 +{(baeminAmount / 10000).toFixed(1)}만
+                  배 +{(baeminAmount / 10000).toFixed(1)}
                 </div>
               )}
             </div>
