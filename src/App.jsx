@@ -48,7 +48,7 @@ const [data, setData] = useState(() => {
     ],
 
     "2026-4-29": [
-      { amount: 130148, platform: "배민" }, // 123950 * 1.05 = 130147.5 반올림
+      { amount: 130148, platform: "배민" }, 
     ],
 
     "2026-5-1": [
