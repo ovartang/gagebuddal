@@ -13,125 +13,124 @@ const [data, setData] = useState(() => {
 
   if (saved) return JSON.parse(saved);
 
-  return {
+ return {
     "2026-4-17": [
-      { amount: 8000, platform: "배민" },
-      { amount: 4700, platform: "쿠팡" },
+      { amount: 8400, platform: "배민" },
+      { amount: 4935, platform: "쿠팡" },
     ],
 
     "2026-4-18": [
-      { amount: 100000, platform: "쿠팡" },
-      { amount: 110000, platform: "배민" },
+      { amount: 105000, platform: "쿠팡" },
+      { amount: 115500, platform: "배민" },
     ],
 
     "2026-4-19": [
-      { amount: 70000, platform: "쿠팡" },
-      { amount: 160000, platform: "배민" },
+      { amount: 73500, platform: "쿠팡" },
+      { amount: 168000, platform: "배민" },
     ],
 
     "2026-4-21": [
-      { amount: 70000, platform: "배민" },
-      { amount: 22000, platform: "쿠팡" },
+      { amount: 73500, platform: "배민" },
+      { amount: 23100, platform: "쿠팡" },
     ],
 
     "2026-4-22": [
-      { amount: 25000, platform: "쿠팡" },
-      { amount: 55000, platform: "배민" },
+      { amount: 26250, platform: "쿠팡" },
+      { amount: 57750, platform: "배민" },
     ],
 
     "2026-4-25": [
-      { amount: 120000, platform: "배민" },
+      { amount: 126000, platform: "배민" },
     ],
 
     "2026-4-28": [
-      { amount: 45000, platform: "배민" },
+      { amount: 47250, platform: "배민" },
     ],
 
     "2026-4-29": [
-      { amount: 123950, platform: "배민" },
+      { amount: 130148, platform: "배민" }, // 123950 * 1.05 = 130147.5 반올림
     ],
 
     "2026-5-1": [
-      { amount: 30000, platform: "배민" },
+      { amount: 31500, platform: "배민" },
     ],
 
     "2026-5-2": [
-      { amount: 135000, platform: "배민" },
+      { amount: 141750, platform: "배민" },
     ],
 
     "2026-5-3": [
-      { amount: 45000, platform: "쿠팡" },
-      { amount: 210000, platform: "배민" },
+      { amount: 47250, platform: "쿠팡" },
+      { amount: 220500, platform: "배민" },
     ],
 
     "2026-5-4": [
-      { amount: 90000, platform: "배민" },
+      { amount: 94500, platform: "배민" },
     ],
 
     "2026-5-5": [
-      { amount: 100000, platform: "배민" },
+      { amount: 105000, platform: "배민" },
     ],
 
     "2026-5-6": [
-      { amount: 14000, platform: "쿠팡" },
-      { amount: 52000, platform: "배민" },
+      { amount: 14700, platform: "쿠팡" },
+      { amount: 54600, platform: "배민" },
     ],
 
     "2026-5-7": [
-      { amount: 150000, platform: "배민" },
-      { amount: 12000, platform: "쿠팡" },
+      { amount: 157500, platform: "배민" },
+      { amount: 12600, platform: "쿠팡" },
     ],
 
     "2026-5-8": [
-      { amount: 84000, platform: "배민" },
-      { amount: 114000, platform: "쿠팡" },
+      { amount: 88200, platform: "배민" },
+      { amount: 119700, platform: "쿠팡" },
     ],
 
     "2026-5-9": [
-      { amount: 140000, platform: "배민" },
-      { amount: 6000, platform: "쿠팡" },
+      { amount: 147000, platform: "배민" },
+      { amount: 6300, platform: "쿠팡" },
     ],
 
     "2026-5-10": [
-      { amount: 190000, platform: "배민" },
-      { amount: 38000, platform: "쿠팡" },
+      { amount: 199500, platform: "배민" },
+      { amount: 39900, platform: "쿠팡" },
     ],
 
     "2026-5-11": [
-      { amount: 117000, platform: "쿠팡" },
-      { amount: 25000, platform: "배민" },
+      { amount: 122850, platform: "쿠팡" },
+      { amount: 26250, platform: "배민" },
     ],
 
     "2026-5-12": [
-      { amount: 110000, platform: "쿠팡" },
+      { amount: 115500, platform: "쿠팡" },
     ],
 
     "2026-5-13": [
-      { amount: 88000, platform: "쿠팡" },
-      { amount: 55000, platform: "배민" },
+      { amount: 92400, platform: "쿠팡" },
+      { amount: 57750, platform: "배민" },
     ],
 
     "2026-5-14": [
-      { amount: 80000, platform: "쿠팡" },
-      { amount: 5000, platform: "배민" },
+      { amount: 84000, platform: "쿠팡" },
+      { amount: 5250, platform: "배민" },
     ],
 
     "2026-5-15": [
-      { amount: 108000, platform: "배민" },
-      { amount: 57000, platform: "쿠팡" },
+      { amount: 113400, platform: "배민" },
+      { amount: 59850, platform: "쿠팡" },
     ],
 
     "2026-5-16": [
-      { amount: 68000, platform: "배민" },
-      { amount: 180000, platform: "쿠팡" },
+      { amount: 71400, platform: "배민" },
+      { amount: 189000, platform: "쿠팡" },
     ],
 
     "2026-5-17": [
-      { amount: 60000, platform: "배민" },
-      { amount: 7400, platform: "쿠팡" },
+      { amount: 63000, platform: "배민" },
+      { amount: 7770, platform: "쿠팡" },
     ],
   };
-});
   const [amount, setAmount] = useState("");
   const [platform, setPlatform] = useState("쿠팡");
 
