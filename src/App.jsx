@@ -297,7 +297,7 @@ const [data, setData] = useState(() => {
         const payKey = `${payFriday.getFullYear()}-${payFriday.getMonth() + 1}-${payFriday.getDate()}`;
 
         if (!coupangSettlement[payKey]) coupangSettlement[payKey] = 0;
-        coupangSettlement[payKey] += item.amount;
+        coupangSettlement[payKey] += item.amount * 0.95;
       }
 
       if (item.platform === "배민") {
@@ -320,7 +320,7 @@ const [data, setData] = useState(() => {
         const payKey = `${payDay.getFullYear()}-${payDay.getMonth() + 1}-${payDay.getDate()}`;
 
         if (!baeminSettlement[payKey]) baeminSettlement[payKey] = 0;
-        baeminSettlement[payKey] += item.amount;
+        baeminSettlement[payKey] += item.amount * 0.95;
       }
     });
   });
