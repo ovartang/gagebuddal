@@ -131,6 +131,7 @@ const [data, setData] = useState(() => {
       { amount: 7770, platform: "쿠팡" },
     ],
   };
+  });
   const [amount, setAmount] = useState("");
   const [platform, setPlatform] = useState("쿠팡");
 
