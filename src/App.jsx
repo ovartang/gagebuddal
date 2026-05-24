@@ -130,6 +130,25 @@ const [data, setData] = useState(() => {
       { amount: 63000, platform: "배민" },
       { amount: 7770, platform: "쿠팡" },
     ],
+   
+   "2026-5-19": [
+  { amount: 49350, platform: "배민" },   // 4.7만 +5%
+  { amount: 96600, platform: "쿠팡" },   // 9.2만 +5%
+],
+
+"2026-5-20": [
+  { amount: 17850, platform: "배민" },   // 1.7만 +5%
+  { amount: 218400, platform: "쿠팡" },  // 20.8만 +5%
+],
+
+"2026-5-21": [
+  { amount: 84000, platform: "쿠팡" },   // 8만 +5%
+  { amount: 4935, platform: "배민" },    // 0.47만 +5%
+
+  "2026-5-23": [
+  { amount: 99750, platform: "쿠팡" },   // 9.5만 +5%
+  { amount: 15750, platform: "배민" },   // 1.5만 +5%
+],
   };
   });
   const [amount, setAmount] = useState("");
