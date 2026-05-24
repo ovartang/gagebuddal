@@ -144,7 +144,7 @@ const [data, setData] = useState(() => {
 "2026-5-21": [
   { amount: 84000, platform: "쿠팡" },   // 8만 +5%
   { amount: 4935, platform: "배민" },    // 0.47만 +5%
-
+],
   "2026-5-23": [
   { amount: 99750, platform: "쿠팡" },   // 9.5만 +5%
   { amount: 15750, platform: "배민" },   // 1.5만 +5%
