@@ -1,0 +1,16 @@
+{
+  "short_name": "배달가계부",
+  "name": "배민 쿠팡 배달 라이더 가계부",
+  "icons": [
+    {
+      "src": "delivery-icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#e8f4f8",
+  "background_color": "#e8f4f8",
+  "orientation": "portrait"
+}
