@@ -550,35 +550,93 @@ const totalHours = selectedData.workHours || 0;
     </div>
   );
 })()}
-            <div className="input-group">
-              <div className="radio-group" style={{ display: "flex", justifyContent: "center", gap: "20px", marginBottom: "15px", width: "100%" }}>
-                
-                {/* 💖 이 부분이 드디어 한 줄 정렬과 글씨 크기가 올바르게 반영되었습니다! */}
-                <label className="radio-label" style={{ display: "flex", alignItems: "center", gap: "5px", cursor: "pointer", fontSize: "14px", whiteSpace: "nowrap" }}>
-                  <input type="radio" value="쿠팡" checked={platform === "쿠팡"} onChange={(e) => setPlatform(e.target.value)} />🚚 쿠팡
-                </label>
-                
-                <label className="radio-label" style={{ display: "flex", alignItems: "center", gap: "5px", cursor: "pointer", fontSize: "14px", whiteSpace: "nowrap" }}>
-                  <input type="radio" value="배민" checked={platform === "배민"} onChange={(e) => setPlatform(e.target.value)} />🛵 배민
-                </label>
-                
-              </div>
-              <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="금액" />
-             <input
-  type="number"
-  value={workHours}
-  onChange={(e) => setWorkHours(e.target.value)}
-  placeholder="근무시간"
-/>
-              <button className="save-btn" onClick={handleSave}>추가</button>
-              <button
-  className="save-btn"
-  onClick={saveWorkHours}
-  style={{ marginTop: "8px" }}
->
-  근무시간 저장
-</button>
-            </div>
+<div className="input-group">
+
+  <div
+    className="radio-group"
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      gap: "20px",
+      marginBottom: "15px",
+      width: "100%",
+    }}
+  >
+    <label
+      className="radio-label"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "5px",
+        cursor: "pointer",
+        fontSize: "14px",
+        whiteSpace: "nowrap",
+      }}
+    >
+      <input
+        type="radio"
+        value="쿠팡"
+        checked={platform === "쿠팡"}
+        onChange={(e) => setPlatform(e.target.value)}
+      />
+      🚚 쿠팡
+    </label>
+
+    <label
+      className="radio-label"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "5px",
+        cursor: "pointer",
+        fontSize: "14px",
+        whiteSpace: "nowrap",
+      }}
+    >
+      <input
+        type="radio"
+        value="배민"
+        checked={platform === "배민"}
+        onChange={(e) => setPlatform(e.target.value)}
+      />
+      🛵 배민
+    </label>
+  </div>
+
+  {/* 금액 입력 */}
+  <input
+    type="number"
+    value={amount}
+    onChange={(e) => setAmount(e.target.value)}
+    placeholder="금액 입력"
+  />
+
+  <button
+    className="save-btn"
+    onClick={handleSave}
+    style={{ marginTop: "8px" }}
+  >
+    금액 추가
+  </button>
+
+  {/* 근무시간 입력 */}
+  <input
+    type="number"
+    value={workHours}
+    onChange={(e) => setWorkHours(e.target.value)}
+    placeholder="근무시간 입력"
+    style={{ marginTop: "18px" }}
+  />
+
+  <button
+    className="save-btn"
+    onClick={saveWorkHours}
+    style={{ marginTop: "8px" }}
+  >
+    근무시간 저장
+  </button>
+
+</div>
 
          <div className="item-list">
   {(
