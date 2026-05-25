@@ -207,32 +207,52 @@ const [data, setData] = useState(() => {
     setSelectedDate(null);
   };
 
-  const handleSave = () => {
-    if (!amount) {
-      alert("금액 입력!");
-      return;
-    }
+const handleSave = () => {
+  if (!amount) {
+    alert("금액 입력!");
+    return;
+  }
 
-    const dateKey = `${currentYear}-${currentMonth + 1}-${selectedDate}`;
+  const dateKey = `${currentYear}-${currentMonth + 1}-${selectedDate}`;
 
-    const newItem = {
-  platform,
-  amount: Number(amount),
-  workHours: Number(workHours) || 0,
-};
-
-    const updated = data[dateKey]
-      ? [...data[dateKey], newItem]
-      : [newItem];
-
-    setData({
-      ...data,
-      [dateKey]: updated,
-    });
-
-    setAmount("");
-    setWorkHours("");
+  const existingData = data[dateKey] || {
+    items: [],
+    workHours: 0,
   };
+
+  const newItem = {
+    platform,
+    amount: Number(amount),
+  };
+
+  setData({
+    ...data,
+    [dateKey]: {
+      ...existingData,
+      items: [...existingData.items, newItem],
+    },
+  });
+
+  setAmount("");
+};
+  const saveWorkHours = () => {
+  const dateKey = `${currentYear}-${currentMonth + 1}-${selectedDate}`;
+
+  const existingData = data[dateKey] || {
+    items: [],
+    workHours: 0,
+  };
+
+  setData({
+    ...data,
+    [dateKey]: {
+      ...existingData,
+      workHours: Number(workHours) || 0,
+    },
+  });
+
+  setWorkHours("");
+};
 
   const deleteItem = (dateKey, idx) => {
     const updated = data[dateKey].filter((_, i) => i !== idx);
@@ -278,8 +298,10 @@ const [data, setData] = useState(() => {
 
 
 
-  currentMonthKeys.forEach((key) => {
-    data[key].forEach((item) => {
+currentMonthKeys.forEach((key) => {
+  const items = data[key].items || [];
+
+  items.forEach((item) => {
    
       totalIn += item.amount;
       totalHours += item.workHours || 0;
@@ -300,8 +322,10 @@ const averageHourly =
   const coupangSettlement = {};
   const baeminSettlement = {};
 
-  Object.keys(data).forEach((key) => {
-    data[key].forEach((item) => {
+Object.keys(data).forEach((key) => {
+  const items = data[key].items || [];
+
+  items.forEach((item) => {
       const parts = key.split("-");
       const year = Number(parts[0]);
       const month = Number(parts[1]) - 1;
@@ -377,7 +401,12 @@ const averageHourly =
           const coupangAmount = coupangSettlement[dateKey] || 0;
           const baeminAmount = baeminSettlement[dateKey] || 0;
 
-          const dayItems = data[dateKey] || [];
+         const dayData = data[dateKey] || {
+  items: [],
+  workHours: 0,
+};
+
+const dayItems = dayData.items;
           const dayIn = dayItems.reduce((a, b) => a + b.amount, 0);
       const totalHours = dayItems.reduce(
   (a, b) => a + (b.workHours || 0),
@@ -471,8 +500,13 @@ const hourlyPay =
             <h3>{selectedDate}일 내역</h3>
 
             {(() => {
-  const selectedItems =
-    data[`${currentYear}-${currentMonth + 1}-${selectedDate}`] || [];
+const selectedData =
+  data[`${currentYear}-${currentMonth + 1}-${selectedDate}`] || {
+    items: [],
+    workHours: 0,
+  };
+
+const selectedItems = selectedData.items;
 
   const baemin = selectedItems
     .filter((item) => item.platform === "배민")
@@ -487,10 +521,7 @@ const hourlyPay =
     0
   );
 
-  const totalHours = selectedItems.reduce(
-    (sum, item) => sum + (item.workHours || 0),
-    0
-  );
+const totalHours = selectedData.workHours || 0;
 
   const hourly =
     totalHours > 0
@@ -498,28 +529,20 @@ const hourlyPay =
       : 0;
 
   return (
-    <div
-      style={{
-        marginBottom: "15px",
-        background: "#f8f9fa",
-        padding: "12px",
-        borderRadius: "10px",
-        fontSize: "14px",
-        lineHeight: "1.7"
-      }}
-    >
+  <>
+    <div style={{ marginBottom: "15px" }}>
       <div>🚚 쿠팡: {coupang.toLocaleString()}원</div>
       <div>🛵 배민: {baemin.toLocaleString()}원</div>
+      <div>⏰ 총 근무시간: {totalHours}시간</div>
 
       <div
         style={{
-          marginTop: "6px",
           color: "#3498db",
           fontWeight: "bold",
-          fontSize: "16px"
+          marginTop: "5px",
         }}
       >
-        평균 시급: {hourly.toLocaleString()}원
+        💰 평균 시급: {hourly.toLocaleString()}원
       </div>
     </div>
   );
@@ -545,10 +568,17 @@ const hourlyPay =
   placeholder="근무시간"
 />
               <button className="save-btn" onClick={handleSave}>추가</button>
+              <button
+  className="save-btn"
+  onClick={saveWorkHours}
+  style={{ marginTop: "8px" }}
+>
+  근무시간 저장
+</button>
             </div>
 
             <div className="item-list">
-              {(data[`${currentYear}-${currentMonth + 1}-${selectedDate}`] || []).map((item, idx) => (
+              {((data[`${currentYear}-${currentMonth + 1}-${selectedDate}`]?.items) || []).map((item, idx) => (
                 <div key={idx} className="item" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 10px", borderBottom: "1px solid #eee" }}>
                   <span>{item.platform} / {item.amount.toLocaleString()}원</span>
                   <button className="del-btn" style={{ width: "24px", height: "24px", minWidth: "24px", padding: 0, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "5px" }} onClick={() => deleteItem(`${currentYear}-${currentMonth + 1}-${selectedDate}`, idx)}>x</button>
