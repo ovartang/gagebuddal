@@ -297,17 +297,25 @@ function App() {
         })}
       </div>
 
-      <div className="summary">
-        <div>총 수익: <span className="income" style={{ fontSize: "22px", fontWeight: "bold" }}>{totalIn.toLocaleString()}원</span></div>
-        <button className="backup-btn" onClick={exportToCSV}>💾 백업</button>
-      </div>
-      <div>
-        총 근무시간: <span className="income">{totalHours.toFixed(1)}시간</span>
-      </div>
+{/* ✨ 새로 바꿀 깔끔한 3단 통합 카드 코드 */}
+<div className="summary-card">
+  <div className="summary-item">
+    <span className="summary-label">💰 총 수익</span>
+    <span className="summary-value total-money">{totalIn.toLocaleString()}원</span>
+  </div>
+  <div className="summary-item">
+    <span className="summary-label">⏰ 근무시간</span>
+    <span className="summary-value">{totalHours.toFixed(1)}시간</span>
+  </div>
+  <div className="summary-item">
+    <span className="summary-label">⚡ 평균 시급</span>
+    <span className="summary-value hourly-money">{averageHourly.toLocaleString()}원</span>
+  </div>
+</div>
 
-      <div>
-        평균 시급: <span className="income" style={{ color: "#3498db", fontWeight: "bold" }}>{averageHourly.toLocaleString()}원</span>
-      </div>
+<div className="backup-container">
+  <button className="backup-btn" onClick={exportToCSV}>💾 CSV 데이터 백업하기</button>
+</div>
 
       <div className="delivery-summary">
         <div className="delivery-card baemin-card">
