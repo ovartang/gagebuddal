@@ -407,17 +407,7 @@ const hourlyPay =
       +{(dayIn / 10000).toFixed(1)}만
     </div>
 
-    {hourlyPay > 0 && (
-      <div
-        style={{
-          fontSize: "11px",
-          color: "#3498db",
-          fontWeight: "bold"
-        }}
-      >
-        시급 {hourlyPay.toLocaleString()}
-      </div>
-    )}
+
   </>
 )}
 
@@ -479,6 +469,61 @@ const hourlyPay =
         <div className="modal">
           <div className="modal-content">
             <h3>{selectedDate}일 내역</h3>
+
+            {(() => {
+  const selectedItems =
+    data[`${currentYear}-${currentMonth + 1}-${selectedDate}`] || [];
+
+  const baemin = selectedItems
+    .filter((item) => item.platform === "배민")
+    .reduce((sum, item) => sum + item.amount, 0);
+
+  const coupang = selectedItems
+    .filter((item) => item.platform === "쿠팡")
+    .reduce((sum, item) => sum + item.amount, 0);
+
+  const totalAmount = selectedItems.reduce(
+    (sum, item) => sum + item.amount,
+    0
+  );
+
+  const totalHours = selectedItems.reduce(
+    (sum, item) => sum + (item.workHours || 0),
+    0
+  );
+
+  const hourly =
+    totalHours > 0
+      ? Math.round(totalAmount / totalHours)
+      : 0;
+
+  return (
+    <div
+      style={{
+        marginBottom: "15px",
+        background: "#f8f9fa",
+        padding: "12px",
+        borderRadius: "10px",
+        fontSize: "14px",
+        lineHeight: "1.7"
+      }}
+    >
+      <div>🚚 쿠팡: {coupang.toLocaleString()}원</div>
+      <div>🛵 배민: {baemin.toLocaleString()}원</div>
+
+      <div
+        style={{
+          marginTop: "6px",
+          color: "#3498db",
+          fontWeight: "bold",
+          fontSize: "16px"
+        }}
+      >
+        평균 시급: {hourly.toLocaleString()}원
+      </div>
+    </div>
+  );
+})()}
             <div className="input-group">
               <div className="radio-group" style={{ display: "flex", justifyContent: "center", gap: "20px", marginBottom: "15px", width: "100%" }}>
                 
