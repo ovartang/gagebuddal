@@ -1,20 +1,29 @@
 /* =========================
+   📢 폰트 서버에서 Pretendard(프리텐다드)를 강제로 불러옵니다!
+========================= */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
+/* =========================
    기본 세팅
 ========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  /* 📌 폰트가 절대로 풀리지 않도록 !important로 강제 고정합니다 */
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+  letter-spacing: -0.4px; /* 글자 간격을 살짝 좁혀서 더 둥글고 꽉 찬 느낌을 줍니다 */
 }
 
 html,
 body {
-  background: #f4f7fb;
+  /* 🌈 배경색이 잘 보이도록 고정 */
+  background: #f4f7fb !important;
+  background-color: #f4f7fb !important;
   min-height: 100vh;
   color: #191f28;
   overflow-x: hidden;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: tabular-nums; /* 숫자 폭을 일정하게 맞춰 정렬을 예쁘게 함 */
   -webkit-font-smoothing: antialiased;
 }
 
