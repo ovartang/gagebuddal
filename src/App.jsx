@@ -337,8 +337,7 @@ function App() {
 
               return (
                 <div style={{ marginBottom: "15px" }}>
-                  <div>🚚 쿠팡: {coupang.toLocaleString()}원</div>
-                  <div>🛵 배민: {baemin.toLocaleString()}원</div>
+           
                   <div>⏰ 총 근무시간: {totalHours}시간</div>
                   <div style={{ color: "#3498db", fontWeight: "bold", marginTop: "5px" }}>
                     💰 평균 시급: {hourly.toLocaleString()}원
