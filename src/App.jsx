@@ -276,8 +276,11 @@ const [data, setData] = useState(() => {
   let coupangTotal = 0;
   let totalHours = 0;
 
+
+
   currentMonthKeys.forEach((key) => {
     data[key].forEach((item) => {
+   
       totalIn += item.amount;
       totalHours += item.workHours || 0;
 
@@ -290,7 +293,10 @@ const [data, setData] = useState(() => {
       }
     });
   });
-
+const averageHourly =
+  totalHours > 0
+    ? Math.round(totalIn / totalHours)
+    : 0;
   const coupangSettlement = {};
   const baeminSettlement = {};
 
@@ -303,10 +309,7 @@ const [data, setData] = useState(() => {
 
       const currentDate = new Date(year, month, day);
       const dayOfWeek = currentDate.getDay();
-      const averageHourly =
-  totalHours > 0
-    ? Math.round(totalIn / totalHours)
-    : 0;
+   
 
       if (item.platform === "쿠팡") {
         let diffFromWednesday;
@@ -398,22 +401,25 @@ const hourlyPay =
             >
               <div className="date">{d}</div>
 
-              {dayIn > 0 && (
-              {hourlyPay > 0 && (
-  <div
-    style={{
-      fontSize: "11px",
-      color: "#3498db",
-      fontWeight: "bold"
-    }}
-  >
-    시급 {hourlyPay.toLocaleString()}
-  </div>
+ {dayIn > 0 && (
+  <>
+    <div className="income">
+      +{(dayIn / 10000).toFixed(1)}만
+    </div>
+
+    {hourlyPay > 0 && (
+      <div
+        style={{
+          fontSize: "11px",
+          color: "#3498db",
+          fontWeight: "bold"
+        }}
+      >
+        시급 {hourlyPay.toLocaleString()}
+      </div>
+    )}
+  </>
 )}
-                <div className="income">
-                  +{(dayIn / 10000).toFixed(1)}만
-                </div>
-              )}
 
               {coupangAmount > 0 && (
                 <div 
