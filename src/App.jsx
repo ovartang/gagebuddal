@@ -638,49 +638,62 @@ const totalHours = selectedData.workHours || 0;
 
 </div>
 
-         <div className="item-list">
-  {(
-    (data[`${currentYear}-${currentMonth + 1}-${selectedDate}`]?.items) || []
-  ).map((item, idx) => (
-    <div
-      key={idx}
-      className="item"
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "8px 10px",
-        borderBottom: "1px solid #eee",
-      }}
-    >
-      <span>
-        {item.platform} / {item.amount.toLocaleString()}원
-      </span>
+            <div className="item-list">
+              {(
+                (data[`${currentYear}-${currentMonth + 1}-${selectedDate}`]?.items) || []
+              ).map((item, idx) => (
+                <div
+                  key={idx}
+                  className="item"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "8px 10px",
+                    borderBottom: "1px solid #eee",
+                  }}
+                >
+                  <span>
+                    {item.platform} / {item.amount.toLocaleString()}원
+                  </span>
 
-      <button
-        className="del-btn"
-        style={{
-          width: "24px",
-          height: "24px",
-          minWidth: "24px",
-          padding: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: "5px",
-        }}
-        onClick={() =>
-          deleteItem(
-            `${currentYear}-${currentMonth + 1}-${selectedDate}`,
-            idx
-          )
-        }
-      >
-        x
-      </button>
+                  <button
+                    className="del-btn"
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      minWidth: "24px",
+                      padding: 0,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: "5px",
+                    }}
+                    onClick={() =>
+                      deleteItem(
+                        `${currentYear}-${currentMonth + 1}-${selectedDate}`,
+                        idx
+                      )
+                    }
+                  >
+                    x
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <button
+              className="close-btn"
+              onClick={() => setSelectedDate(null)}
+            >
+              닫기
+            </button>
+
+          </div>
+        </div>
+      )}
+
     </div>
-  ))}
-</div>
   );
 }
 
