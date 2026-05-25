@@ -1,12 +1,14 @@
-/* 전체 기본 설정 */
+/* 전체 기본 설정 및 폰트 강제 상속 */
 * {
   box-sizing: border-box;
+  /* 📌 index.css에 설정된 프리텐다드 폰트를 모든 요소에 강제 상속합니다 */
+  font-family: inherit !important; 
+  letter-spacing: -0.3px;
 }
 
 body {
   margin: 0;
   padding: 0;
-
   /* 🌈 전체 배경: 부드러운 파스텔 하늘색 */
   background: #e8f4f8;
   overflow-x: hidden;
@@ -30,7 +32,8 @@ body {
 }
 
 .header h2 {
-  font-size: 18px;
+  font-size: 20px; /* 폰트 가독성을 위해 살짝 키움 */
+  font-weight: 700;
   margin: 0;
   /* 🌈 제목: 짙은 보라색으로 포인트를 주어 가독성 확보 */
   color: #5c527f;
@@ -92,7 +95,7 @@ body {
 /* 요일별 색상 */
 .date {
   font-size: 11px;
-  font-weight: bold;
+  font-weight: 700;
   color: #4e4e4e;
 }
 
@@ -103,11 +106,13 @@ body {
 .income { 
   /* 🌈 당일 수입: 톡 쏘는 오렌지 컬러 */
   color: #ff6b81; 
-  font-size: 9px; 
+  font-size: 10px; 
+  font-weight: 600;
 }
 .expense { 
   color: #ff4757; 
-  font-size: 9px; 
+  font-size: 10px; 
+  font-weight: 600;
 }
 
 /* 하단 요약 */
@@ -119,10 +124,15 @@ body {
   padding: 15px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   font-size: 14px;
   box-shadow: 0 4px 10px rgba(255, 212, 59, 0.2);
   color: #2f3542;
   border: 1px solid #ffe066;
+}
+
+.summary span {
+  font-weight: 700;
 }
 
 /* 모달 입력창 */
@@ -146,20 +156,33 @@ body {
   gap: 10px;
 }
 
+.modal-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #191f28;
+  margin-bottom: 5px;
+}
+
 /* 모달 안의 입력창 및 버튼들 */
 .modal-content button, 
 .modal-content input {
   width: 100%;
   padding: 12px;
   border-radius: 10px;
-  border: 1px solid #f1f2f6;
-  font-family: 'Jua', sans-serif;
+  border: 1px solid #e5e8eb;
+  font-size: 14px;
+}
+
+.modal-content input {
+  background: #f9fafb;
+  color: #191f28;
 }
 
 .modal-content button {
   background: #57606f;
   color: white;
   border: none;
+  font-weight: 600;
 }
 
 /* 모달 내 입력창 정렬 */
@@ -176,7 +199,6 @@ body {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ddd;
-  font-family: 'Jua', sans-serif;
 }
 
 /* 추가된 내역 리스트 */
@@ -193,32 +215,42 @@ body {
   padding: 8px 5px;
   border-bottom: 1px solid #f1f2f6;
   font-size: 14px;
+  color: #4e5968;
+}
+
+.item span {
+  font-weight: 500;
 }
 
 /* 삭제 버튼 */
 .del-btn {
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
-  border: none;
-  border-radius: 50%;
-  background: #ff6b81;
-  color: white;
-  font-size: 11px;
-  padding: 0;
-  margin-left: 8px;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  border: none !important;
+  border-radius: 50% !important;
+  background: #ff6b81 !important;
+  color: white !important;
+  font-size: 11px !important;
+  padding: 0 !important;
+  margin-left: 8px !important;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 추가 버튼 */
 .save-btn {
   /* 🌈 추가 버튼: 러블리한 코랄 핑크 */
   background: #ff85a2 !important;
-  font-weight: bold;
+  color: white !important;
+  font-weight: 700 !important;
 }
 
 .close-btn {
   background: #a4b0be !important;
+  font-weight: 600 !important;
 }
 
 /* 오늘 날짜 강조 스타일 */
@@ -240,11 +272,12 @@ body {
   background: #ffe8cc !important;
   color: #f76707 !important;
   border: 1px solid #ffd8a8 !important;
-  padding: 5px 10px !important;
+  padding: 6px 12px !important;
   font-size: 12px !important;
   width: auto !important;
   cursor: pointer;
   border-radius: 8px;
+  font-weight: 600 !important;
 }
 
 .backup-btn:active {
@@ -279,19 +312,20 @@ body {
 }
 
 .delivery-title {
-  font-size: 15px;
+  font-size: 14px;
   opacity: 0.9;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  font-weight: 500;
 }
 
 .delivery-money {
-  font-size: 23px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .settlement {
   font-size: 11px;
-  font-weight: bold;
+  font-weight: 700;
   color: #6c5ce7;
   margin-top: 2px;
 }
