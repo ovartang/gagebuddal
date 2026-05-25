@@ -153,6 +153,7 @@ const [data, setData] = useState(() => {
   });
   const [amount, setAmount] = useState("");
   const [platform, setPlatform] = useState("쿠팡");
+  const [workHours, setWorkHours] = useState("");
 
   useEffect(() => {
     localStorage.setItem("gagebu-data", JSON.stringify(data));
@@ -215,9 +216,10 @@ const [data, setData] = useState(() => {
     const dateKey = `${currentYear}-${currentMonth + 1}-${selectedDate}`;
 
     const newItem = {
-      platform,
-      amount: Number(amount),
-    };
+  platform,
+  amount: Number(amount),
+  workHours: Number(workHours) || 0,
+};
 
     const updated = data[dateKey]
       ? [...data[dateKey], newItem]
@@ -229,6 +231,7 @@ const [data, setData] = useState(() => {
     });
 
     setAmount("");
+    setWorkHours("");
   };
 
   const deleteItem = (dateKey, idx) => {
@@ -271,10 +274,12 @@ const [data, setData] = useState(() => {
   let totalIn = 0;
   let baeminTotal = 0;
   let coupangTotal = 0;
+  let totalHours = 0;
 
   currentMonthKeys.forEach((key) => {
     data[key].forEach((item) => {
       totalIn += item.amount;
+      totalHours += item.workHours || 0;
 
       if (item.platform === "배민") {
         baeminTotal += item.amount;
@@ -298,6 +303,10 @@ const [data, setData] = useState(() => {
 
       const currentDate = new Date(year, month, day);
       const dayOfWeek = currentDate.getDay();
+      const averageHourly =
+  totalHours > 0
+    ? Math.round(totalIn / totalHours)
+    : 0;
 
       if (item.platform === "쿠팡") {
         let diffFromWednesday;
@@ -367,6 +376,13 @@ const [data, setData] = useState(() => {
 
           const dayItems = data[dateKey] || [];
           const dayIn = dayItems.reduce((a, b) => a + b.amount, 0);
+      const totalHours = dayItems.reduce(
+  (a, b) => a + (b.workHours || 0),
+  0
+);
+
+const hourlyPay =
+  totalHours > 0 ? Math.round(dayIn / totalHours) : 0;
 
           const isToday =
             today.getFullYear() === currentYear &&
@@ -383,6 +399,17 @@ const [data, setData] = useState(() => {
               <div className="date">{d}</div>
 
               {dayIn > 0 && (
+              {hourlyPay > 0 && (
+  <div
+    style={{
+      fontSize: "11px",
+      color: "#3498db",
+      fontWeight: "bold"
+    }}
+  >
+    시급 {hourlyPay.toLocaleString()}
+  </div>
+)}
                 <div className="income">
                   +{(dayIn / 10000).toFixed(1)}만
                 </div>
@@ -414,6 +441,22 @@ const [data, setData] = useState(() => {
         <div>총 수익: <span className="income" style={{ fontSize: "22px", fontWeight: "bold" }}>{totalIn.toLocaleString()}원</span></div>
         <button className="backup-btn" onClick={exportToCSV}>💾 백업</button>
       </div>
+      <div>
+  총 근무시간:
+  <span className="income">
+    {totalHours.toFixed(1)}시간
+  </span>
+</div>
+
+<div>
+  평균 시급:
+  <span
+    className="income"
+    style={{ color: "#3498db", fontWeight: "bold" }}
+  >
+    {averageHourly.toLocaleString()}원
+  </span>
+</div>
 
       <div className="delivery-summary">
         <div className="delivery-card baemin-card">
@@ -444,6 +487,12 @@ const [data, setData] = useState(() => {
                 
               </div>
               <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="금액" />
+             <input
+  type="number"
+  value={workHours}
+  onChange={(e) => setWorkHours(e.target.value)}
+  placeholder="근무시간"
+/>
               <button className="save-btn" onClick={handleSave}>추가</button>
             </div>
 
