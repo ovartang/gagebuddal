@@ -1,24 +1,27 @@
-/* 전체 기본 설정 및 폰트 강제 상속 */
+/* 📌 모든 요소에 예쁘고 정갈한 프리텐다드 폰트 강제 적용 */
 * {
   box-sizing: border-box;
-  /* 📌 index.css에 설정된 프리텐다드 폰트를 모든 요소에 강제 상속합니다 */
-  font-family: inherit !important; 
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
   letter-spacing: -0.3px;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  /* 🌈 전체 배경: 부드러운 파스텔 하늘색 */
-  background: #e8f4f8;
+/* 🌈 전체 배경: 부드러운 파스텔 하늘색 (강제 고정) */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #e8f4f8 !important;
+  background-color: #e8f4f8 !important;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
+/* 메인 컨테이너 */
 .container {
   width: 100%;
   max-width: 390px; /* 모바일 폭 고정 */
   margin: 0 auto;
   padding: 15px;
+  background: transparent !important; /* 배경 투명화로 하늘색이 보이게 함 */
 }
 
 /* 제목 부분 */
@@ -32,10 +35,10 @@ body {
 }
 
 .header h2 {
-  font-size: 20px; /* 폰트 가독성을 위해 살짝 키움 */
+  font-size: 20px;
   font-weight: 700;
   margin: 0;
-  /* 🌈 제목: 짙은 보라색으로 포인트를 주어 가독성 확보 */
+  /* 🌈 제목: 짙은 보라색 */
   color: #5c527f;
   white-space: nowrap;
   text-align: center;
@@ -74,7 +77,7 @@ body {
 
 .day {
   /* 🌈 달력 칸: 기본은 하얗고 깔끔하게 */
-  background: white;
+  background: white !important;
   border-radius: 10px;
   padding: 4px;
   min-height: 65px;
@@ -107,19 +110,19 @@ body {
   /* 🌈 당일 수입: 톡 쏘는 오렌지 컬러 */
   color: #ff6b81; 
   font-size: 10px; 
-  font-weight: 600;
+  font-weight: 700;
 }
 .expense { 
   color: #ff4757; 
   font-size: 10px; 
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* 하단 요약 */
 .summary {
   margin-top: 20px;
   /* 🌈 총 수익창: 은은한 바나나 레몬색 */
-  background: #fff9db;
+  background: #fff9db !important;
   border-radius: 15px;
   padding: 15px;
   display: flex;
@@ -146,7 +149,7 @@ body {
 }
 
 .modal-content {
-  background: white;
+  background: white !important;
   padding: 20px;
   width: 85%;
   max-width: 400px;
@@ -174,8 +177,8 @@ body {
 }
 
 .modal-content input {
-  background: #f9fafb;
-  color: #191f28;
+  background: #f9fafb !important;
+  color: #191f28 !important;
 }
 
 .modal-content button {
@@ -218,10 +221,6 @@ body {
   color: #4e5968;
 }
 
-.item span {
-  font-weight: 500;
-}
-
 /* 삭제 버튼 */
 .del-btn {
   width: 20px !important;
@@ -255,9 +254,9 @@ body {
 
 /* 오늘 날짜 강조 스타일 */
 .day.today {
-  /* 🌈 오늘 날짜: 산뜻한 민트초코빛 테두리와 연민트 배경 */
-  border: 2px solid #2ed573; 
-  background: #eefbf2;       
+  /* 🌈 오늘 날짜: 민트초코빛 테두리와 연민트 배경 */
+  border: 2px solid #2ed573 !important; 
+  background: #eefbf2 !important;       
 }
 
 /* 오늘 날짜의 숫자 */
@@ -268,7 +267,7 @@ body {
 
 /* 백업 버튼 */
 .backup-btn {
-  /* 🌈 백업 버튼: 노란창에 어울리는 주황빛 포인트 */
+  /* 🌈 백업 버튼 */
   background: #ffe8cc !important;
   color: #f76707 !important;
   border: 1px solid #ffd8a8 !important;
@@ -278,11 +277,6 @@ body {
   cursor: pointer;
   border-radius: 8px;
   font-weight: 600 !important;
-}
-
-.backup-btn:active {
-  background: #ffd8a8 !important;
-  color: white !important;
 }
 
 /* 하단 카드 배정 정보 */
@@ -301,14 +295,12 @@ body {
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-/* 🌈 배민 카드: 오리지널 민트색보다 청량한 스카이 민트 그라데이션 */
 .baemin-card {
-  background: linear-gradient(135deg, #2ecc71, #00d2d3);
+  background: linear-gradient(135deg, #2ecc71, #00d2d3) !important;
 }
 
-/* 🌈 쿠팡 카드: 상큼 발랄한 오렌지 자몽 그라데이션 */
 .coupang-card {
-  background: linear-gradient(135deg, #ff9f43, #ff5252);
+  background: linear-gradient(135deg, #ff9f43, #ff5252) !important;
 }
 
 .delivery-title {
@@ -321,11 +313,4 @@ body {
 .delivery-money {
   font-size: 20px;
   font-weight: 700;
-}
-
-.settlement {
-  font-size: 11px;
-  font-weight: 700;
-  color: #6c5ce7;
-  margin-top: 2px;
 }
