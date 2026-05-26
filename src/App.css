@@ -5,22 +5,56 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* App.css 상단 */
 body {
   margin: 0;
   padding: 0;
-  /* 밋밋한 회색을 지우고, 은은하고 화사한 파스텔 그래디언트 적용 */
-  background: linear-gradient(135deg, #F3E8FF 0%, #E0EAFF 100%); 
-  background-attachment: fixed; /* 스크롤해도 배경색 고정 */
+  background: linear-gradient(135deg, #F3E8FF 0%, #E0EAFF 100%);
+  background-attachment: fixed;
   color: #333D4B;
-  overflow-x: hidden;
+  /* 모바일 가로 스크롤 방지 */
+  overflow-x: hidden; 
+  width: 100vw;
 }
 
 .container {
   width: 100%;
   max-width: 420px;
   margin: 0 auto;
-  padding: 24px 20px;
+  padding: 24px 16px; /* 좌우 패딩을 살짝 줄여 공간 확보 */
   min-height: 100vh;
+}
+
+/* 달력 그리드 수정 */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px; /* 간격을 살짝 줄여서 좁은 화면 대응 */
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.day {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 8px; /* 모서리를 살짝 줄여 더 단단하게 */
+  padding: 4px 2px;
+  min-height: 60px; /* 높이를 살짝 줄임 */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 텍스트 위로 정렬 */
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden; /* 글자가 넘치지 않게 */
+}
+
+/* 폰트 크기 강제 축소 (모바일 대응) */
+.income-text {
+  font-size: 9px; /* 조금 더 작게 */
+  font-weight: 700;
+  white-space: nowrap;
+  transform: scale(0.9); /* 글자가 길 경우 살짝 줄어들게 */
 }
 
 /* 헤더 (월 이동) */
