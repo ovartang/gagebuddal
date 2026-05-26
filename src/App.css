@@ -1,289 +1,338 @@
 /* 전체 기본 설정 */
 * {
   box-sizing: border-box;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Jua', sans-serif;
-  background: #fff0f5;
+  background: #F2F4F6; /* 토스 스타일의 고급스러운 라이트 그레이 */
+  color: #333D4B;
   overflow-x: hidden;
 }
 
 .container {
   width: 100%;
-  max-width: 390px; /* 모바일 폭 고정 */
+  max-width: 420px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 24px 20px;
+  min-height: 100vh;
 }
 
-/* 제목 부분 (화살표 버튼 포함) */
+/* 헤더 (월 이동) */
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  margin-bottom: 24px;
+  padding: 0 4px;
 }
 
 .header h2 {
-  font-size: 18px;
+  font-size: 22px;
+  font-weight: 700;
   margin: 0;
-  color: #ff69b4;
-  white-space: nowrap;
-  text-align: center;
+  color: #191F28;
 }
 
-/* 화살표 버튼 (작고 동그랗게 고정) */
 .nav-btn {
-  width: 35px !important;
-  height: 35px !important;
-  padding: 0 !important;
-  background: #ff85c1;
-  color: white;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: #FFFFFF;
+  color: #8B95A1;
+  border-radius: 12px;
   border: none;
-  font-size: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  flex-shrink: 0; /* 버튼 크기 안 찌그러지게 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
 }
 
 .nav-btn:active {
-  transform: scale(0.9);
+  background: #F2F4F6;
+  transform: scale(0.95);
 }
 
 /* 달력 그리드 */
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-  margin-top: 10px;
+  gap: 8px;
+  margin-bottom: 32px;
 }
 
 .day {
-  background: white;
-  border-radius: 10px;
-  padding: 4px;
-  min-height: 65px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 6px 4px;
+  min-height: 72px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  transition: 0.2s;
+  cursor: pointer;
+  transition: transform 0.1s ease;
 }
 
-/* 빈 칸은 투명하게 */
+.day:active {
+  transform: scale(0.96);
+}
+
 .day.empty {
-  background: transparent !important;
-  box-shadow: none !important;
+  background: transparent;
+  box-shadow: none;
   pointer-events: none;
 }
 
-/* 요일별 색상 */
+.day.today {
+  border: 2px solid #3182F6;
+  background: #F9FCFF;
+}
+
 .date {
-  font-size: 11px;
-  font-weight: bold;
-  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4E5968;
+  margin-bottom: 4px;
+  text-align: center;
 }
 
-.day:nth-child(7n+1) .date { color: #ff4d6d; } /* 일요일 빨간색 */
-.day:nth-child(7n) .date { color: #4da6ff; }   /* 토요일 파란색 */
+.day:nth-child(7n+1) .date { color: #F04452; } /* 일요일 */
+.day:nth-child(7n) .date { color: #3182F6; }   /* 토요일 */
 
-/* 금액 표시 */
-.income { color: #4da6ff; font-size: 9px; }
-.expense { color: #ff4d6d; font-size: 9px; }
+/* 달력 내 텍스트 (금액) */
+.income-text {
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 2px;
+  letter-spacing: -0.5px;
+}
 
-/* 하단 요약 */
-.summary {
-  margin-top: 20px;
-  background: white;
-  border-radius: 15px;
-  padding: 15px;
+.income-total { color: #3182F6; }
+.income-coupang { color: #FF8A00; }
+.income-baemin { color: #2AC1BC; }
+
+/* 요약 카드 (3단 통합) */
+.summary-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 24px;
   display: flex;
-  justify-content: space-around;
-  font-size: 14px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  margin-bottom: 16px;
 }
 
-/* 모달 입력창 */
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.summary-label {
+  font-size: 13px;
+  color: #8B95A1;
+  font-weight: 500;
+}
+
+.summary-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #191F28;
+}
+
+.total-money { color: #3182F6; font-size: 20px; }
+
+/* 플랫폼별 배달 수익 카드 */
+.delivery-summary {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.delivery-card {
+  flex: 1;
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.delivery-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4E5968;
+}
+
+.delivery-money {
+  font-size: 20px;
+  font-weight: 700;
+  color: #191F28;
+}
+
+.baemin-card .delivery-title { color: #2AC1BC; }
+.coupang-card .delivery-title { color: #FF8A00; }
+
+/* 버튼 류 */
+.backup-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.backup-btn {
+  background: #F2F4F6;
+  color: #4E5968;
+  border: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.backup-btn:active {
+  background: #E5E8EB;
+}
+
+/* 모달 (입력창) */
 .modal {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex; justify-content: center; align-items: center;
+  background: rgba(0, 0, 0, 0.5); /* 틴트 느낌의 어두운 배경 */
+  display: flex; justify-content: center; align-items: flex-end; /* 아래에서 올라오는 느낌 */
   z-index: 1000;
+  padding-bottom: 20px;
 }
 
 .modal-content {
-  background: white;
-  padding: 20px;
-  width: 85%;
-  max-width: 300px;
-  border-radius: 20px;
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 24px;
+  padding: 30px 24px;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
-/* 모달 안의 큰 버튼들은 100% 유지 */
-.modal-content button, 
-.modal-content input {
+.modal-content h3 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  color: #191F28;
+}
+
+.input-group input {
   width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  font-family: 'Jua', sans-serif;
+  padding: 16px;
+  background: #F2F4F6;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #191F28;
+  margin-bottom: 12px;
 }
 
-.modal-content button {
-  background: #ff85c1;
+.input-group input:focus {
+  outline: 2px solid #3182F6;
+  background: #FFFFFF;
+}
+
+.radio-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.radio-label {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  background: #F2F4F6;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #8B95A1;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.radio-label input[type="radio"] {
+  display: none;
+}
+
+/* 라디오 버튼 선택 시 활성화 상태 */
+.radio-label:has(input[value="쿠팡"]:checked) {
+  background: #FFF4E5;
+  color: #FF8A00;
+  border: 1px solid #FF8A00;
+}
+
+.radio-label:has(input[value="배민"]:checked) {
+  background: #E5F9F8;
+  color: #2AC1BC;
+  border: 1px solid #2AC1BC;
+}
+
+.save-btn {
+  background: #3182F6;
   color: white;
   border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 24px;
 }
 
-/* 모달 내 입력창 정렬 */
-.input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px dashed #eee;
+.close-btn {
+  background: #F2F4F6;
+  color: #4E5968;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.input-group select {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  font-family: 'Jua', sans-serif;
-}
-
-/* 추가된 내역 리스트 */
+/* 모달 내 리스트 */
 .item-list {
-  max-height: 200px;
+  max-height: 180px;
   overflow-y: auto;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 5px;
-  border-bottom: 1px solid #f9f9f9;
-  font-size: 14px;
+  padding: 14px 4px;
+  border-bottom: 1px solid #F2F4F6;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333D4B;
 }
 
 .del-btn {
-  width: 20px !important;
-  height: 20px !important;
-  padding: 0 !important;
-  background: #ccc !important;
-  font-size: 10px !important;
-  border-radius: 4px !important;
-  margin-left: 10px;
-}
-
-.save-btn {
-  background: #ff85c1 !important;
-  font-weight: bold;
-}
-
-.close-btn {
-  background: #999 !important;
-}
-
-/* 오늘 날짜 강조 스타일 */
-.day.today {
-  border: 2px solid #ff69b4; /* 진한 핑크색 테두리 */
-  background: #fff0f5;       /* 연한 핑크색 배경 */
-}
-
-/* 오늘 날짜의 숫자도 더 잘 보이게 */
-.day.today .date {
-  color: #ff1493 !important;
-  font-weight: 900;
-}
-
-.backup-btn {
-  background: #ffecf2 !important;
-  color: #ff69b4 !important;
-  border: 1px solid #ffb6c1 !important;
-  padding: 5px 10px !important;
-  font-size: 12px !important;
-  width: auto !important;
-  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  background: #F2F4F6;
+  color: #8B95A1;
+  border: none;
   border-radius: 8px;
-}
-
-.backup-btn:active {
-  background: #ffb6c1 !important;
-  color: white !important;
-}
-
-/* 캐릭터 배너 스타일 */
-.character-banner {
-  margin-top: 20px;
-  margin-bottom: 40px;
-  text-align: center;
-  padding: 0 10px;
-}
-
-.banner-img {
-  width: 100%;       /* 가로 폭을 화면에 꽉 채움 */
-  max-width: 500px;  /* 너무 커지지 않게 제한 */
-  height: auto;      /* 비율에 맞춰 높이 자동 조절 */
-  border-radius: 15px; 
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-}
-
-.banner-msg {
-  font-family: 'Jua', sans-serif;
-  font-size: 1.2rem;
-  color: #ff69b4; 
-  margin-top: 10px;
-}
-
-/* --- 이 부분부터 끝까지 복사해서 맨 밑에 붙여넣으세요 --- */
-
-/* 1. 개별 내역 한 줄 설정 */
-.item {
-  display: flex;          /* 가로로 나열 */
-  justify-content: flex-start; /* 왼쪽부터 채움 */
-  align-items: center;    /* 세로 중앙 맞춤 */
-  padding: 10px 5px;
-  border-bottom: 1px solid #f9f9f9;
-  font-size: 14px;
-}
-
-/* 2. 품목 이름 (왼쪽 공간 다 쓰기) */
-.item span:nth-child(1) {
-  flex: 1;                /* 남은 공간을 혼자 다 차지해서 금액을 오른쪽으로 밀어냄 */
-  text-align: left;       /* 글자는 왼쪽 정렬 */
-  white-space: nowrap;    /* 줄바꿈 방지 */
-  overflow: hidden;       /* 넘치는 글자 숨김 */
-  text-overflow: ellipsis; /* 너무 길면 ... 처리 */
-}
-
-/* 3. 금액 (너비 고정해서 줄 맞추기) */
-.item span:nth-child(2) {
-  width: 70px;            /* 금액 자리를 딱 70px로 고정! */
-  text-align: right;      /* 숫자는 오른쪽 정렬 */
-  font-weight: bold;
-  margin-right: 5px;      /* 삭제 버튼과 약간 띄우기 */
-}
-
-/* 4. 삭제 버튼 크기 유지 */
-.del-btn {
-  flex-shrink: 0;         /* 공간 좁아져도 버튼 안 찌그러지게 */
-  width: 20px !important;
-  height: 20px !important;
-  line-height: 18px;      /* x 표시 중앙 맞춤 */
+  font-size: 12px;
+  cursor: pointer;
 }
