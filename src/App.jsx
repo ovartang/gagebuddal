@@ -12,7 +12,7 @@ function App() {
     const saved = localStorage.getItem("gagebu-data");
     if (saved) return JSON.parse(saved);
 
-    return {
+  return {
       "2026-4-17": { items: [{ amount: 8400, platform: "배민" }, { amount: 4935, platform: "쿠팡" }], workHours: 0 },
       "2026-4-18": { items: [{ amount: 105000, platform: "쿠팡" }, { amount: 115500, platform: "배민" }], workHours: 0 },
       "2026-4-19": { items: [{ amount: 73500, platform: "쿠팡" }, { amount: 168000, platform: "배민" }], workHours: 0 },
@@ -42,6 +42,11 @@ function App() {
       "2026-5-20": { items: [{ amount: 17850, platform: "배민" }, { amount: 218400, platform: "쿠팡" }], workHours: 0 },
       "2026-5-21": { items: [{ amount: 84000, platform: "쿠팡" }, { amount: 4935, platform: "배민" }], workHours: 0 },
       "2026-5-23": { items: [{ amount: 99750, platform: "쿠팡" }, { amount: 15750, platform: "배민" }], workHours: 0 },
+      "2026-5-25": { items: [{ amount: 43000, platform: "배민" }], workHours: 0 },
+      "2026-5-26": { items: [{ amount: 100000, platform: "배민" }], workHours: 0 },
+      "2026-5-27": { items: [{ amount: 19000, platform: "배민" }], workHours: 0 },
+      "2026-5-29": { items: [{ amount: 95000, platform: "배민" }, { amount: 129000, platform: "쿠팡" }, { amount: 52000, platform: "배민" }], workHours: 0 },
+      "2026-5-23": { items: [{ amount: 60000, platform: "배민" }], workHours: 0 }
     };
   });
 
