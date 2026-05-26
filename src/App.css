@@ -8,7 +8,9 @@
 body {
   margin: 0;
   padding: 0;
-  background: #F4F6F8; /* 살짝 쿨톤이 도는 밝은 배경 */
+  /* 밋밋한 회색을 지우고, 은은하고 화사한 파스텔 그래디언트 적용 */
+  background: linear-gradient(135deg, #F3E8FF 0%, #E0EAFF 100%); 
+  background-attachment: fixed; /* 스크롤해도 배경색 고정 */
   color: #333D4B;
   overflow-x: hidden;
 }
@@ -41,22 +43,23 @@ body {
 .nav-btn {
   width: 40px;
   height: 40px;
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.8); /* 반투명 */
+  backdrop-filter: blur(8px);
   color: #6B7684;
   border-radius: 12px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.6);
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
   transition: all 0.2s ease;
 }
 
 .nav-btn:hover {
   color: #4F46E5;
+  background: #FFFFFF;
 }
 
 .nav-btn:active {
-  background: #F2F4F6;
   transform: scale(0.95);
 }
 
@@ -68,17 +71,24 @@ body {
   margin-bottom: 32px;
 }
 
+/* 밋밋한 흰색을 빼고, 유리 질감(Glassmorphism) 적용 */
 .day {
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.65); /* 반투명한 흰색 */
+  backdrop-filter: blur(12px); /* 뒤에 있는 배경색을 예쁘게 번지게 함 */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8); /* 빛을 받는 듯한 테두리 */
   border-radius: 12px;
   padding: 6px 4px;
   min-height: 72px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.04); /* 아주 은은한 보랏빛 그림자 */
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-  border: 1px solid transparent;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.day:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .day:active {
@@ -88,6 +98,8 @@ body {
 
 .day.empty {
   background: transparent;
+  backdrop-filter: none;
+  border: none;
   box-shadow: none;
   pointer-events: none;
 }
@@ -95,7 +107,7 @@ body {
 /* 오늘 날짜 화려하게 강조 */
 .day.today {
   border: 2px solid #7C3AED;
-  background: #F5F3FF;
+  background: rgba(245, 243, 255, 0.8);
 }
 
 .day.today .date {
@@ -123,7 +135,7 @@ body {
   letter-spacing: -0.5px;
 }
 
-.income-total { color: #4F46E5; background: #EEF2FF; border-radius: 4px; margin-bottom: 2px;}
+.income-total { color: #4F46E5; background: rgba(238, 242, 255, 0.8); border-radius: 4px; margin-bottom: 2px;}
 .income-coupang { color: #FF7A00; }
 .income-baemin { color: #00BCA6; }
 
@@ -134,7 +146,7 @@ body {
   padding: 24px;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3); /* 카드의 빛 번짐 효과 */
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
   margin-bottom: 16px;
   color: white;
 }
@@ -183,17 +195,17 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
 
-/* 배민 카드 컬러 화사하게 */
 .baemin-card {
-  background: #EFFFFD;
+  background: rgba(239, 255, 253, 0.85);
+  backdrop-filter: blur(8px);
   border: 1px solid #C4F0EE;
 }
 .baemin-card .delivery-title { color: #00A390; }
 .baemin-card .delivery-money { color: #007D6E; }
 
-/* 쿠팡 카드 컬러 화사하게 */
 .coupang-card {
-  background: #FFF6F0;
+  background: rgba(255, 246, 240, 0.85);
+  backdrop-filter: blur(8px);
   border: 1px solid #FFD9C2;
 }
 .coupang-card .delivery-title { color: #E66A00; }
@@ -217,9 +229,10 @@ body {
 }
 
 .backup-btn {
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
   color: #4F46E5;
-  border: 1px solid #EEF2FF;
+  border: 1px solid rgba(255, 255, 255, 0.8);
   padding: 12px 20px;
   font-size: 14px;
   font-weight: 700;
@@ -230,7 +243,6 @@ body {
 }
 
 .backup-btn:active {
-  background: #EEF2FF;
   transform: translateY(2px);
 }
 
@@ -239,7 +251,7 @@ body {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background: rgba(15, 23, 42, 0.6); /* 더 고급스럽고 진한 블러 느낌 */
+  background: rgba(15, 23, 42, 0.6); 
   backdrop-filter: blur(4px);
   display: flex; justify-content: center; align-items: flex-end;
   z-index: 1000;
@@ -298,97 +310,3 @@ body {
 
 .radio-label {
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 14px;
-  background: #F4F6F8;
-  border-radius: 12px;
-  font-weight: 700;
-  color: #8B95A1;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid transparent;
-}
-
-.radio-label input[type="radio"] {
-  display: none;
-}
-
-/* 라디오 버튼 선택 시 화려한 활성화 상태 */
-.radio-label:has(input[value="쿠팡"]:checked) {
-  background: #FFF6F0;
-  color: #FF7A00;
-  border: 2px solid #FF7A00;
-}
-
-.radio-label:has(input[value="배민"]:checked) {
-  background: #EFFFFD;
-  color: #00BCA6;
-  border: 2px solid #00BCA6;
-}
-
-/* 저장 버튼들 그래디언트 */
-.save-btn {
-  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 16px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  margin-bottom: 24px;
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-  transition: transform 0.1s;
-}
-
-.save-btn:active {
-  transform: scale(0.98);
-}
-
-.close-btn {
-  background: #F4F6F8;
-  color: #4E5968;
-  border: none;
-  border-radius: 12px;
-  padding: 16px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-/* 모달 내 리스트 */
-.item-list {
-  max-height: 180px;
-  overflow-y: auto;
-  margin-bottom: 20px;
-}
-
-.item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 8px;
-  border-bottom: 1px solid #F4F6F8;
-  font-size: 15px;
-  font-weight: 600;
-  color: #333D4B;
-}
-
-.del-btn {
-  width: 30px;
-  height: 30px;
-  background: #FFF0F0;
-  color: #FF3B30;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.del-btn:hover {
-  background: #FFE5E5;
-}
