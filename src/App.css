@@ -280,67 +280,89 @@ body {
   transform: translateY(2px);
 }
 
-/* 모달 (입력창) */
+/* 1. 모달이 모바일 전체 화면을 덮되 내용이 깨지지 않게 수정 */
 .modal {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background: rgba(15, 23, 42, 0.6); 
+  background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(4px);
-  display: flex; justify-content: center; align-items: flex-end;
+  display: flex; 
+  justify-content: center; 
+  align-items: flex-end; /* 아래에서 올라오게 */
   z-index: 1000;
-  padding-bottom: 20px;
 }
 
 .modal-content {
   background: #FFFFFF;
   width: 100%;
-  max-width: 400px;
-  border-radius: 24px;
-  padding: 30px 24px;
-  box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+  max-width: 420px; /* 최대 너비 고정 */
+  height: 85vh; /* 화면의 85%만 차지하도록 높이 제한 */
+  border-radius: 24px 24px 0 0;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden; /* 내부에서만 스크롤 가능하게 */
 }
 
-@keyframes slideUp {
-  from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+/* 2. 모달 내 리스트가 넘치면 스크롤되도록 설정 */
+.item-list {
+  flex: 1; /* 남은 공간 모두 차지 */
+  overflow-y: auto; /* 내용 많으면 스크롤 발생 */
+  margin-top: 10px;
+  padding-right: 5px;
 }
 
-.modal-content h3 {
-  margin: 0 0 20px 0;
-  font-size: 20px;
-  font-weight: 800;
-  color: #191F28;
+/* 3. 리스트 항목 정렬 고정 */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 4px;
+  border-bottom: 1px solid #F4F6F8;
+  font-size: 14px; /* 글자 크기 조정 */
 }
 
-.input-group input {
-  width: 100%;
-  padding: 16px;
-  background: #F4F6F8;
-  border: 2px solid transparent;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #191F28;
-  margin-bottom: 12px;
-  transition: 0.2s;
-}
-
-.input-group input:focus {
-  outline: none;
-  border: 2px solid #7C3AED;
-  background: #FFFFFF;
-  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+/* 4. 입력창 레이아웃 수정 */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .radio-group {
   display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 8px; /* 간격 줄임 */
 }
 
 .radio-label {
   flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 14px;
+  background: #F4F6F8;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* 5. 버튼 사이즈 고정 */
+.save-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+  cursor: pointer;
+}
+
+/* 6. 모바일 달력 글자 깨짐 방지 */
+.income-text {
+  font-size: 8px !important; /* 모바일에서 텍스트가 너무 크면 깨지므로 작게 고정 */
+  transform: scale(0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
