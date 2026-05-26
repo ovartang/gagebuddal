@@ -1,52 +1,126 @@
-/* 1. 기본 설정 */
-* { box-sizing: border-box; font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0; padding: 0; background: linear-gradient(135deg, #F3E8FF 0%, #E0EAFF 100%); background-attachment: fixed; color: #333D4B; overflow-x: hidden; width: 100vw; }
-.container { width: 100%; max-width: 420px; margin: 0 auto; padding: 24px 16px; min-height: 100vh; }
-
-/* 2. 헤더 */
-.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding: 0 4px; }
-.header h2 { font-size: 22px; font-weight: 800; margin: 0; color: #191F28; letter-spacing: -0.5px; }
-.nav-btn { width: 40px; height: 40px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); color: #6B7684; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.6); font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03); transition: 0.2s; }
-
-/* 3. 달력 그리드 (기존의 예쁜 디자인 유지) */
-.calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 32px; width: 100%; }
-.day { 
-  background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 12px; padding: 6px 4px; min-height: 72px; display: flex; flex-direction: column; cursor: pointer;
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.04); transition: 0.2s;
+transform: translateY(2px);
 }
-.day:hover { background: rgba(255, 255, 255, 0.9); }
-.day.empty { background: transparent; backdrop-filter: none; border: none; box-shadow: none; }
-.day.today { border: 2px solid #7C3AED; background: rgba(245, 243, 255, 0.8); }
-.date { font-size: 13px; font-weight: 600; color: #4E5968; margin-bottom: 4px; text-align: center; }
-.day:nth-child(7n+1) .date { color: #FF3B30; }
-.day:nth-child(7n) .date { color: #007AFF; }
 
-/* 달력 텍스트 (길면 축소) */
-.income-text { font-size: 9px; font-weight: 700; text-align: center; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transform: scale(0.95); }
-.income-total { color: #4F46E5; background: rgba(238, 242, 255, 0.8); border-radius: 4px; }
-.income-coupang { color: #FF7A00; }
-.income-baemin { color: #00BCA6; }
-
-/* 4. 요약 카드 */
-.summary-card { background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); border-radius: 20px; padding: 24px; display: flex; justify-content: space-between; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3); margin-bottom: 16px; color: white; }
-.summary-item { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
-.summary-label { font-size: 13px; color: rgba(255, 255, 255, 0.8); }
-.summary-value { font-size: 18px; font-weight: 700; }
-.total-money { color: #FFE800; font-size: 22px; text-shadow: 0 2px 10px rgba(255, 232, 0, 0.3); }
-
-/* 5. 모달 전용 스타일 (깨짐 방지) */
-.modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: flex-end; z-index: 1000; }
-.modal-content { 
-  background: #FFFFFF; width: 100%; max-width: 420px; height: 80vh; 
-  border-radius: 24px 24px 0 0; padding: 24px; display: flex; flex-direction: column; 
+/* 모달 (입력창) */
+/* 1. 모달이 모바일 전체 화면을 덮되 내용이 깨지지 않게 수정 */
+.modal {
+position: fixed;
+top: 0; left: 0;
+width: 100vw; height: 100vh;
+  background: rgba(15, 23, 42, 0.6); 
+  background: rgba(15, 23, 42, 0.6);
+backdrop-filter: blur(4px);
+  display: flex; justify-content: center; align-items: flex-end;
+  display: flex; 
+  justify-content: center; 
+  align-items: flex-end; /* 아래에서 올라오게 */
+z-index: 1000;
+  padding-bottom: 20px;
 }
-.item-list { flex: 1; overflow-y: auto; margin: 16px 0; }
-.item { display: flex; justify-content: space-between; align-items: center; padding: 12px 4px; border-bottom: 1px solid #F4F6F8; font-size: 14px; }
-.input-group { display: flex; flex-direction: column; gap: 10px; }
-.input-group input { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid #E5E7EB; font-size: 16px; }
-.radio-group { display: flex; gap: 12px; }
-.radio-label { flex: 1; padding: 14px; background: #F4F6F8; border-radius: 12px; text-align: center; font-weight: 700; color: #8B95A1; border: 2px solid transparent; }
-.radio-label:has(input:checked) { background: #F5F3FF; border: 2px solid #7C3AED; color: #7C3AED; }
-.save-btn { width: 100%; padding: 16px; border-radius: 12px; border: none; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); color: white; font-weight: 700; cursor: pointer; }
-.close-btn { background: #F4F6F8; color: #4E5968; border: none; padding: 16px; border-radius: 12px; font-weight: 700; width: 100%; margin-top: 10px; }
+
+.modal-content {
+background: #FFFFFF;
+width: 100%;
+  max-width: 400px;
+  border-radius: 24px;
+  padding: 30px 24px;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+  max-width: 420px; /* 최대 너비 고정 */
+  height: 85vh; /* 화면의 85%만 차지하도록 높이 제한 */
+  border-radius: 24px 24px 0 0;
+  padding: 24px;
+display: flex;
+flex-direction: column;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+  overflow: hidden; /* 내부에서만 스크롤 가능하게 */
+}
+
+.modal-content h3 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #191F28;
+/* 2. 모달 내 리스트가 넘치면 스크롤되도록 설정 */
+.item-list {
+  flex: 1; /* 남은 공간 모두 차지 */
+  overflow-y: auto; /* 내용 많으면 스크롤 발생 */
+  margin-top: 10px;
+  padding-right: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 16px;
+  background: #F4F6F8;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #191F28;
+  margin-bottom: 12px;
+  transition: 0.2s;
+/* 3. 리스트 항목 정렬 고정 */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 4px;
+  border-bottom: 1px solid #F4F6F8;
+  font-size: 14px; /* 글자 크기 조정 */
+}
+
+.input-group input:focus {
+  outline: none;
+  border: 2px solid #7C3AED;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+/* 4. 입력창 레이아웃 수정 */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.radio-group {
+display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  gap: 8px; /* 간격 줄임 */
+}
+
+.radio-label {
+flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 14px;
+  background: #F4F6F8;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* 5. 버튼 사이즈 고정 */
+.save-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+  cursor: pointer;
+}
+
+/* 6. 모바일 달력 글자 깨짐 방지 */
+.income-text {
+  font-size: 8px !important; /* 모바일에서 텍스트가 너무 크면 깨지므로 작게 고정 */
+  transform: scale(0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
