@@ -267,7 +267,7 @@ function App() {
               <div className="date">{d}</div>
 
 <div className="income-text income-total">
-  {dayIn > 0 && `+${(dayIn / 10000).toFixed(1)}만`}
+  {dayIn > 0 && `+${(dayIn / 10000).toFixed(1)}`}
 </div>
 
 <div className="income-text income-coupang">
