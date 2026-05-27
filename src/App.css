@@ -140,6 +140,8 @@ body {
 .income-total { color: #4F46E5; background: rgba(238, 242, 255, 0.8); border-radius: 4px; margin-bottom: 2px;}
 .income-coupang { color: #FF7A00;   font-weight: 900; }
 .income-baemin { color: #00BCA6;   font-weight: 900; }
+  font-size: 9px;
+  font-weight: 900;
 
 /* 요약 카드 (화려한 딥 그래디언트) */
 .summary-card {
