@@ -137,7 +137,7 @@ body {
   letter-spacing: -0.5px;
 }
 
-.income-total {   font-size: 12px;
+.income-total {   font-size: 9px;
   font-weight: 900; color: #4F46E5; background: rgba(238, 242, 255, 0.8); border-radius: 4px; margin-bottom: 2px;}
 .income-coupang { color: #FF7A00;   font-weight: 900; }
 .income-baemin { color: #00BCA6;   font-weight: 900; }
