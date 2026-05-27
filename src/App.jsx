@@ -281,7 +281,7 @@ function App() {
     ? `배 +${(baeminAmount / 10000).toFixed(1)}`
     : ' '}
 </div>
-              )}
+           
             </div>
           );
         })}
