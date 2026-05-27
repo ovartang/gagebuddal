@@ -133,6 +133,7 @@ body {
   text-align: center;
   margin-top: 1px;
   line-height: 1.2;
+  min-height: 10px;
   letter-spacing: -0.5px;
 }
 
