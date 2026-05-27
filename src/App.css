@@ -128,10 +128,11 @@ body {
 
 /* 달력 내 텍스트 (금액) */
 .income-text {
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 700;
   text-align: center;
-  margin-top: 2px;
+  margin-top: 1px;
+  line-height: 1.1;
   letter-spacing: -0.5px;
 }
 
