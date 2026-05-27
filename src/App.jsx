@@ -266,20 +266,16 @@ function App() {
             >
               <div className="date">{d}</div>
 
-     <div className="income-text income-total">
-  +{(dayIn / 10000).toFixed(1)}만
+<div className="income-text income-total">
+  {dayIn > 0 && `+${(dayIn / 10000).toFixed(1)}만`}
 </div>
 
 <div className="income-text income-coupang">
-  {coupangAmount > 0
-    ? `쿠 +${(coupangAmount / 10000).toFixed(1)}`
-    : ' '}
+  {coupangAmount > 0 && `쿠 +${(coupangAmount / 10000).toFixed(1)}`}
 </div>
 
 <div className="income-text income-baemin">
-  {baeminAmount > 0
-    ? `배 +${(baeminAmount / 10000).toFixed(1)}`
-    : ' '}
+  {baeminAmount > 0 && `배 +${(baeminAmount / 10000).toFixed(1)}`}
 </div>
            
             </div>
